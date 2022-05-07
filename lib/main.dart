@@ -1,24 +1,28 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-import 'pages/home_page.dart';
+import './pages/home_page.dart';
 
-void main() {
-  runApp(MyApp());
+List<CameraDescription>? cameras;
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      themeMode: ThemeMode.light,
-      theme: ThemeData(primarySwatch: Colors.deepPurple),
-      darkTheme: ThemeData(
-        brightness: Brightness.dark,
+    return GetMaterialApp(
+      title: 'Face Detector App Getx',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
-      initialRoute: "/",
-      routes: {
-        "/": (context) => HomePage(),
-      },
+      home: Home(),
     );
   }
 }
