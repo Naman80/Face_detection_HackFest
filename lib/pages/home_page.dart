@@ -1,20 +1,28 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:face_detection/pages/camera_page.dart';
 
 class HomePage extends StatelessWidget {
-  final int days = 30;
-  final String name = "Codepur";
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Catalogs App"),
-      ),
       body: Center(
-        child: Container(
-          child: Text("Welcome to $days days of flutter by $name"),
+        child: ElevatedButton(
+          onPressed: () async {
+            await availableCameras().then(
+              (value) => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CameraPage(cameras: value,),
+                ),
+              ),
+            );
+          },
+          child: const Text('Launch Camera'),
         ),
       ),
-      drawer: Drawer(),
     );
   }
 }

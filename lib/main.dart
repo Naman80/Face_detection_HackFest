@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:face_detection/pages/login_page.dart';
 
 import 'pages/home_page.dart';
 
@@ -18,9 +17,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: "/home",
       routes: {
-        "/": (context) => LoginPage(),
-        "/home": (context) => HomePage(),
-        "/login": (context) => LoginPage()
+        "/": (context) => HomePage(),
       },
     );
   }
